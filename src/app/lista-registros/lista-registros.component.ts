@@ -48,4 +48,9 @@ export class ListaRegistrosComponent implements OnInit, OnDestroy {
     r.mostrar_detalhes = !("mostrar_detalhes" in r) || !r.mostrar_detalhes ? true : false
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }

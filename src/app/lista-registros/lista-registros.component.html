@@ -1,5 +1,10 @@
 <div class="mat-elevation-z8">
 
+  <mat-form-field class="filtro">
+    <mat-label>Filtro de palavras</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. abraçadeira">
+  </mat-form-field>
+
   <table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container *ngFor="let c of colunas" matColumnDef="{{c.nomeCampo}}">
