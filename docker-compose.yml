@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: compras_cse
+    restart: always
+    volumes:
+      - ./dist/analisador-atas-ufsc:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "83:80"

@@ -1,0 +1,23 @@
+<div class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container *ngFor="let c of colunas" matColumnDef="{{c.nomeCampo}}">
+      <mat-header-cell mat-sort-header *matHeaderCellDef> {{c.tituloColuna}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[c.nomeCampo]}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="campos()"></mat-header-row>
+    <mat-row matRipple *matRowDef="let row; columns: campos();" (click)="more(row)" [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl"></mat-row>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="itensPorPagina" showFirstLastButtons></mat-paginator>
+</div>
+
+<ng-template #tpl let-element>
+	<div class="mat-row detail-row container" style="overflow: hidden">
+      <p *ngFor="let c of camposExpandidos">
+        <strong>{{c.tituloColuna}}</strong> - {{element[c.nomeCampo]}}
+      </p>
+	</div>
+</ng-template>

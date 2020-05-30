@@ -1,0 +1,55 @@
+<div class="container">
+    <h1>Sistema para análise dos arquivos XLS do Saldo de R.P. do Sistema Solar</h1>
+
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Ajuda
+                </mat-panel-title>
+                <mat-panel-description>
+                    Passo a passo para gerar o arquivo .XLS usado por esse sistema
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <ul>
+                <li>Entrar no sistema Solar</li>
+                <li>Acessar o módulo <em>Compras & Licitações</em></li>
+                <li>Entrar em Consultas e Relatórios > Saldo de R.P.</li>
+                <li>Informar o ano do processo (usar o ano corrente e o ano anterior, isto é, gerar 2 arquivos, um para cada ano)</li>
+                <li>Carregar os dois arquivos nesses sistema</li>
+            </ul>
+
+            <img src="/assets/solar_passos.png" alt="Passos">
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <form [formGroup]="form" novalidate (ngSubmit)="submit()">
+        <h2>Informe os dados abaixo para gerar a tabela de acompanhamento:</h2>
+        
+        <mat-form-field>
+            <mat-label>Arquivos para importação</mat-label>
+            <ngx-mat-file-input formControlName="file" placeholder="Selecione os arquivos" [multiple]="true">
+            </ngx-mat-file-input>
+            <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Data vigência maior ou igual a</mat-label>
+            <input matInput placeholder="Informe a data no formato AAAA-MM-DD" formControlName="filtro_data">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Saldo maior ou igual a</mat-label>
+            <input matInput placeholder="Informe o saldo mínimo desejado" formControlName="filtro_saldo">
+        </mat-form-field>
+
+
+        <button mat-raised-button color="primary" class="btn">Processar</button>
+    </form>
+
+    <div class="container">
+        <lista-registros [colunas]="colunas" [dados]="dados" [camposExpandidos]="extras" #lista></lista-registros>
+    </div>
+
+</div>
